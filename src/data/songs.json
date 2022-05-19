@@ -46,5 +46,69 @@
                 }
             ]
         }
+    },
+    {
+        "name": "Kẻ Theo Đuổi Ánh Sáng",
+        "author": "Huy Vạc",
+        "url": "https://aredir.nixcdn.com/NhacCuaTui1019/KeTheoDuoiAnhSang-HuyVac-7056896.mp3?st=1ER7gUO5aOty6ruUOq4mzw&e=1653061442&t=1652975042515",
+        "id": 3,
+        "links": {
+            "images": [
+                {
+                    "url": "https://data.chiasenhac.com/data/cover/144/143124.jpg"
+                },
+                {
+                    "url": "https://avatar-ex-swe.nixcdn.com/song/2021/11/29/a/9/5/0/1638180197658.jpg"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hôm Nay Em Cưới Rồi (Live)",
+        "author": "Khải Đăng",
+        "url": "https://aredir.nixcdn.com/NhacCuaTui1007/HomNayEmCuoiRoiLive-KhaiDang-6847347.mp3?st=tlkj-BPQMHr6bTVYk6z4HQ&e=1653061719&t=1652975319658",
+        "id": 4,
+        "links": {
+            "images": [
+                {
+                    "url": "https://i1.sndcdn.com/artworks-O2k0GPdE7HybyGpN-85RbUQ-t500x500.jpg"
+                },
+                {
+                    "url": "https://avatar-ex-swe.nixcdn.com/song/2021/11/29/a/9/5/0/1638180197658.jpg"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Chỉ Là Không Cùng Nhau (Live)",
+        "author": "Tăng Phúc, Trương Thảo Nhi",
+        "url": "https://aredir.nixcdn.com/NhacCuaTui1014/ChiLaKhongCungNhauLive-TangPhucTruongThaoNhi-6994969.mp3?st=HDu6887Zb5Zm6PL3el345A&e=1653061855&t=1652975455222",
+        "id": 5,
+        "links": {
+            "images": [
+                {
+                    "url": "https://i.scdn.co/image/ab67616d0000b273c8730748f811c757c51d92b4"
+                },
+                {
+                    "url": "https://avatar-ex-swe.nixcdn.com/song/2021/11/29/a/9/5/0/1638180197658.jpg"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Thời Gian Độc Thoại (Em Là Niềm Kiêu Hãnh Của Anh Ost)",
+        "author": "Từ Giai Oánh (Lala Hsu)",
+        "url": "https://aredir.nixcdn.com/NhacCuaTui1019/ThoiGianDocThoaiEmLaNiemKieuHanhCuaAnhOst-TuGiaiOanhLalaHsu-7056768.mp3?st=hwI-MhopsbA1l6eoSiZiSA&e=1653062094&t=1652975694002",
+        "id": 6,
+        "links": {
+            "images": [
+                {
+                    "url": "https://i.ytimg.com/vi/jZo_QJJdGWg/mqdefault.jpg"
+                },
+                {
+                    "url": "https://avatar-ex-swe.nixcdn.com/song/2021/11/29/a/9/5/0/1638180197658.jpg"
+                }
+            ]
+        }
     }
 ]
