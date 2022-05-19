@@ -1,31 +1,59 @@
 .player-music {
-    background-color: #0F172A !important;
-    height: 6rem;
+  background-color: #0F172A !important;
+  height: 6rem;
 }
-.rhap_time, .rhap_current-time {
-    color: white !important;
+
+.rhap_time,
+.rhap_current-time {
+  color: white !important;
 }
 
 ::selection {
-    background-color: transparent;
-    color: turquoise;
+  background-color: transparent;
+  color: turquoise;
 }
+
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@keyframes xoayvong {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
   }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
   }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+}
+
+.disk-active {
+  animation: xoayvong 5s linear 0s infinite;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50%;
+}
+
+.white-text {
+  color: white;
+}

@@ -1,11 +1,17 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-import { Songs } from "../Context";
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Set_Song } from "../action/SongAction";
 
 export default function Playing() {
   const player = useRef();
-  const { song, handleSetSong } = useContext(Songs);
+  const dispatch = useDispatch();
+
+  const song = useSelector(state => state.Song);
+  const songs = useSelector(state => state.Songs.data);
+
   const [volumeText, setVolumeText] = useState("100");
 
   useEffect(() => {
@@ -21,10 +27,10 @@ export default function Playing() {
   }, [])
 
   const handleClickNext = () => {
-    handleSetSong(song.id + 1)
+    dispatch(Set_Song(song.id + 1, songs))
   }
   const handleClickPre = () => {
-    handleSetSong(song.id - 1)
+    dispatch(Set_Song(song.id - 1, songs))
   }
   return (
     <div>
@@ -42,11 +48,10 @@ export default function Playing() {
         }}
         customAdditionalControls={
           [
-            RHAP_UI.LOOP,
-            <i className="rhap_button-clear rhap_repeat-button fa-solid fa-shuffle"></i>
+            RHAP_UI.LOOP
           ]
         }
-        customVolumeControls={[RHAP_UI.VOLUME, <div key={2}>&nbsp;&nbsp;{volumeText}</div>]}
+        customVolumeControls={[RHAP_UI.VOLUME, <div className="white-text" key={2}>&nbsp;&nbsp;{volumeText}</div>]}
       />
     </div>
   );
