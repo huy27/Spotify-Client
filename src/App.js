@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<ListAlbums />}></Route>
+        <Route path="*" element={<ListAlbums />}></Route>
         <Route path="/album/:id" element={<Album />}></Route>
       </Routes>
     </>
