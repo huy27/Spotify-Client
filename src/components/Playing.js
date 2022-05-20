@@ -27,14 +27,17 @@ export default function Playing() {
   }, [])
 
   const handleClickNext = () => {
-    dispatch(Set_Song(song.id + 1, songs))
+    const next = songs.findIndex(s => s.id === song.id);
+    dispatch(Set_Song(songs[next + 1]?.id, songs))
   }
   const handleClickPre = () => {
-    dispatch(Set_Song(song.id - 1, songs))
+    const previous = songs.findIndex(s => s.id === song.id);
+    dispatch(Set_Song(songs[previous - 1]?.id, songs))
   }
   return (
     <div>
       <AudioPlayer
+        autoPlay={false}
         ref={player}
         className="player-music"
         src={song.url}

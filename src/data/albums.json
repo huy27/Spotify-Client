@@ -1,0 +1,30 @@
+[
+    {
+        "id": "1",
+        "name": "Nhạc trẻ",
+        "created_at": "1 hour ago",
+        "background_image_url": "https://i.pinimg.com/564x/20/35/76/203576cfc2b68dc061360f47602ba06d.jpg",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+    },
+    {
+        "id": "2",
+        "name": "Nhạc chill",
+        "created_at": "2 hour ago",
+        "background_image_url": "https://wallpaperaccess.com/full/4038902.png",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,"
+    },
+    {
+        "id": "3",
+        "name": "Nhạc",
+        "created_at": "3 hour ago",
+        "background_image_url": "https://i.pinimg.com/564x/b9/f8/e4/b9f8e4981596e3d05f91672148600ddd.jpg",
+        "description": "description"
+    },
+    {
+        "id": "4",
+        "name": "Nhạc",
+        "created_at": "4 hour ago",
+        "background_image_url": "https://static.zerochan.net/ASK.%28Nico.Nico.Singer%29.full.948479.jpg",
+        "description": "description"
+    }
+]

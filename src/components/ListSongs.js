@@ -26,8 +26,8 @@ export default function ListSongs() {
         <thead className="text-white h-12">
           <tr>
             <th className="w-[10%]">#</th>
-            <th className="text-left">Title</th>
-            <th className="text-left">Author</th>
+            <th className="text-left">Bài hát</th>
+            <th className="text-left">Tác giả</th>
             <th className="w-[15%]"></th>
           </tr>
         </thead>
