@@ -1,20 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { Add_Favorite, Add_Favorites, Remove_Favorite } from "../action/FavoriteAction";
 import { Set_Song } from "../action/SongAction";
 
 export default function ListSongs() {
   const song = useSelector(state => state.Song);
   const DataSongs = useSelector(state => state.Songs.data);
+  const favorite = useSelector(state => state.Favorite.songs);
+
+  useEffect(() => {
+    if(favorite.length > 0) {
+      localStorage.setItem("Favorite", JSON.stringify(favorite));
+    }
+  }, [favorite]);
+
+  useEffect(()=> {
+    if(localStorage.getItem("Favorite")){
+      dispatch(Add_Favorites(JSON.parse(localStorage.getItem("Favorite"))));
+    }
+  }, [])
 
   const dispatch = useDispatch();
 
   const [idSong, setidSong] = useState(DataSongs && DataSongs[0]);
 
   const handlePlaySong = (idSong) => {
-    setidSong(idSong)
-    dispatch(Set_Song(idSong, DataSongs))
+    setidSong(idSong);
+    dispatch(Set_Song(idSong, DataSongs));
   };
+
+  const handleAddFavorite = (song) => {
+    if (!favorite.find(f => f.id === song.id)) {
+      dispatch(Add_Favorite(song));
+    }
+    else {
+      if(favorite.length === 1) {
+        localStorage.removeItem("Favorite");
+      }
+      dispatch(Remove_Favorite(song.id));
+    }
+  }
 
   useEffect(() => {
     setidSong(song.id)
@@ -38,7 +64,10 @@ export default function ListSongs() {
               className={`bg-slate-800 h-12 text-gray-500 hover:bg-slate-600 ${idSong === song.id && 'bg-slate-600 text-teal-400'}`}
               onClick={() => handlePlaySong(song.id)}
             >
-              <td className="text-center">{index + 1}</td>
+              <td className="text-center">
+                <i onClick={() => handleAddFavorite(song)} className={`fa-solid fa-star ${favorite.find(f => f.id === song.id) && "fa-star-active"}`}>
+                </i>
+              </td>
               <td>{song.name}</td>
               <td className="text-left">{song.author}</td>
               <td className="text-center">

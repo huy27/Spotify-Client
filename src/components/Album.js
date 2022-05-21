@@ -19,12 +19,19 @@ const Album = () => {
     const getSongs = async () => {
         const result = await getSongsApi();
 
-        const Songs = DataSongs.filter(o => o.albumId === id);
-        dispatch(Set_Songs(Songs));
-        dispatch(Set_Song(0, Songs));
+        if(id === "favorite"){
+            const Songs = JSON.parse(localStorage.getItem("Favorite"));
+            console.log(Songs);
+            dispatch(Set_Songs(Songs));
+            dispatch(Set_Song(0, Songs));
+        }
+        else{
+            const Songs = DataSongs.filter(o => o.albumId === id);
+            dispatch(Set_Songs(Songs));
+            dispatch(Set_Song(0, Songs));
+        }        
     }
 
-    
     useEffect(() => {
         getSongs();
     }, []);

@@ -51,7 +51,7 @@
         }
     },
     {
-        "albumId": "4",
+        "albumId": "5",
         "name": "Kẻ Theo Đuổi Ánh Sáng",
         "author": "Huy Vạc",
         "url": "https://aredir.nixcdn.com/NhacCuaTui1019/KeTheoDuoiAnhSang-HuyVac-7056896.mp3?st=1ER7gUO5aOty6ruUOq4mzw&e=1653061442&t=1652975042515",
@@ -111,6 +111,23 @@
             "images": [
                 {
                     "url": "https://i.ytimg.com/vi/jZo_QJJdGWg/mqdefault.jpg"
+                },
+                {
+                    "url": "https://avatar-ex-swe.nixcdn.com/song/2021/11/29/a/9/5/0/1638180197658.jpg"
+                }
+            ]
+        }
+    },
+    {
+        "albumId": "5",
+        "name": "Anh Làm Gì Sai Cover",
+        "author": "Thương Võ",
+        "url": "https://aredir.nixcdn.com/NhacCuaTui1011/AnhLamGiSaiCover-ThuongVo-6944838.mp3?st=2guQH5MEJiqT8UJD8B6nGQ&e=1653153487&t=1653067087872",
+        "id": 7,
+        "links": {
+            "images": [
+                {
+                    "url": "https://i.ytimg.com/vi/fDctq_Kj2UI/maxresdefault.jpg"
                 },
                 {
                     "url": "https://avatar-ex-swe.nixcdn.com/song/2021/11/29/a/9/5/0/1638180197658.jpg"
