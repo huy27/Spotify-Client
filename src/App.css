@@ -3,6 +3,23 @@
   height: 6rem;
 }
 
+.container-lyric {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+  padding: 10px;
+  border-top: 1.5px solid #f1f1f1;
+}
+
+.button_lyrics {
+  font-size: 22px;
+  width: 26px;
+  height: 26px;
+  color: #868686;
+  margin-right: 6px;
+}
+
 .rhap_time,
 .rhap_current-time {
   color: white !important;

@@ -7,6 +7,7 @@ const songs = [
         author: "",
         url: "",
         id: "",
+        lyric: "",
         links: {
             images: [
                 {

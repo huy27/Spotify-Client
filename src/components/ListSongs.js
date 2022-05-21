@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Add_Favorite, Add_Favorites, Remove_Favorite } from "../action/FavoriteAction";
+import { ShowLyric } from "../action/LyricAction";
 import { Set_Song } from "../action/SongAction";
 
-export default function ListSongs() {
+const ListSongs = ({ height }) => {
   const song = useSelector(state => state.Song);
   const DataSongs = useSelector(state => state.Songs.data);
   const favorite = useSelector(state => state.Favorite.songs);
+  const lyric = useSelector(state => state.Lyric);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if(favorite.length > 0) {
+    if (favorite.length > 0) {
       localStorage.setItem("Favorite", JSON.stringify(favorite));
     }
   }, [favorite]);
 
-  useEffect(()=> {
-    if(localStorage.getItem("Favorite")){
+  useEffect(() => {
+    if (localStorage.getItem("Favorite")) {
       dispatch(Add_Favorites(JSON.parse(localStorage.getItem("Favorite"))));
     }
   }, [])
-
-  const dispatch = useDispatch();
 
   const [idSong, setidSong] = useState(DataSongs && DataSongs[0]);
 
   const handlePlaySong = (idSong) => {
     setidSong(idSong);
     dispatch(Set_Song(idSong, DataSongs));
+    dispatch(ShowLyric(lyric.isShow, DataSongs.find(s => s.id === idSong)?.lyric));
   };
 
   const handleAddFavorite = (song) => {
@@ -35,7 +36,7 @@ export default function ListSongs() {
       dispatch(Add_Favorite(song));
     }
     else {
-      if(favorite.length === 1) {
+      if (favorite.length === 1) {
         localStorage.removeItem("Favorite");
       }
       dispatch(Remove_Favorite(song.id));
@@ -47,7 +48,7 @@ export default function ListSongs() {
   }, [song])
 
   return (
-    <div className="col-span-3 overflow-auto">
+    <div className="col-span-3 overflow-auto" style={{ height: `${height}` }}>
       <table className="table-auto w-full">
         <thead className="text-white h-12">
           <tr>
@@ -80,3 +81,5 @@ export default function ListSongs() {
     </div>
   );
 }
+
+export default ListSongs

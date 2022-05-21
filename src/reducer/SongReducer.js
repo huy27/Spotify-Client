@@ -1,23 +1,7 @@
 import { SETSONG } from './../action/SongAction';
 
 
-const song =
-{
-    name: "",
-    author: "",
-    url: "",
-    id: "",
-    links: {
-        images: [
-            {
-                url: ""
-            },
-            {
-                url: ""
-            }
-        ]
-    }
-}
+const song = {}
 
 
 const SongReducer = (state = song, action) => {
