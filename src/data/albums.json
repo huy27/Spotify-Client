@@ -15,14 +15,14 @@
     },
     {
         "id": "3",
-        "name": "Nhạc",
+        "name": "Nhạc 1",
         "created_at": "3 hour ago",
         "background_image_url": "https://i.pinimg.com/564x/b9/f8/e4/b9f8e4981596e3d05f91672148600ddd.jpg",
         "description": "description"
     },
     {
         "id": "5",
-        "name": "Nhạc",
+        "name": "Nhạc 2",
         "created_at": "4 hour ago",
         "background_image_url": "https://i.pinimg.com/originals/b3/63/01/b36301cb298e8a90eaf58617a301e580.jpg",
         "description": "description"

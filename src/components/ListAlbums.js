@@ -1,10 +1,61 @@
-
+import { Autocomplete, Button, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Albums from './../data/albums.json'
+import Albums from './../data/albums.json';
+import DataSongs from './../data/songs.json';
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const ListAlbums = () => {
+    let navigate = useNavigate();
+    const [searchSongs, setSearchSongs] = useState([]);
+
+    const handSearchSongs = (songs) => {
+        setSearchSongs(songs);  
+    }
+
+    const SearchSongs = () => {
+        navigate("/search", { state: { searchSongs: searchSongs }});
+    }
     return (
         <div className="container-card">
+            <div className="bg-search">
+                <Autocomplete
+                    multiple
+                    variant="outlined"
+                    limitTags={0}
+                    id="multiple-limit-tags"
+                    options={DataSongs}
+                    getOptionLabel={(option) => option.name}
+                    sx={{ width: "80%" }}
+                    onChange={(event, value) => handSearchSongs(value)}
+                    className="container-search"
+                    renderInput={(params) => (
+                        <>
+                            <TextField
+                                {...params}
+                                size="small"
+                                placeholder="Nhập tên bài hát"
+                            />
+                        </>)
+                    }
+                    renderOption={(props, option) => (
+                        <li {...props}>{option.name}</li>
+                    )}
+                    ListboxProps={
+                        {
+                            style: {
+                                maxHeight: '150px',
+                                border: '1px solid white',
+                            }
+                        }
+                    }
+                />
+                <div style={{ backgroundColor: '#e7e7e7' }}>
+                    <Button disabled={searchSongs.length === 0} color="primary" onClick={SearchSongs}>
+                        Tìm
+                    </Button>
+                </div>
+            </div>
             <ul className="cards">
                 {Albums.map(album => (
                     <li key={album.id}>
@@ -27,7 +78,7 @@ const ListAlbums = () => {
                 <li>
                     {
                         localStorage.getItem('Favorite') &&
-                        <Link to={`/album/favorite`} className="card" state={{ albumName: `Sở thich` }}>
+                        <Link to={`/album/favorite`} className="card" state={{ albumName: `Sở thích` }}>
                             <img src={`https://img-9gag-fun.9cache.com/photo/aVxY4y8_460s.jpg`} className="card__image" alt="" />
                             <div className="card__overlay">
                                 <div className="card__header">

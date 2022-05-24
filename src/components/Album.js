@@ -16,9 +16,8 @@ const Album = () => {
     const dispatch = useDispatch();
     const location = useLocation();
     const { id } = useParams();
-    const { albumName } = location.state;
+    const { albumName, searchSongs } = location.state;
     const isShowLyric = useSelector(state => state.Lyric.isShow);
-    const song = useSelector(state => state.Song);
 
     const getSongs = async () => {
         const result = await getSongsApi();
@@ -28,6 +27,11 @@ const Album = () => {
             dispatch(Set_Songs(Songs));
             dispatch(Set_Song(-1, Songs));
             dispatch(ShowLyric(isShowLyric, Songs[0]?.lyric));
+        }
+        else if (searchSongs.length !== 0) {
+            dispatch(Set_Songs(searchSongs));
+            dispatch(Set_Song(-1, searchSongs));
+            dispatch(ShowLyric(isShowLyric, searchSongs[0]?.lyric));
         }
         else {
             const Songs = DataSongs.filter(o => o.albumId === id);
