@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import DataSongs from "./../data/songs.json";
 import { useLocation, useParams } from 'react-router-dom';
 import Lyric from './Lyric';
-import { ShowLyric } from '../action/LyricAction';
+import { ShowLyric } from '../reducer/LyricSlice';
 
 const Album = () => {
     const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const Album = () => {
         }
         dispatch(Set_Songs(Songs));
         dispatch(Set_Song(-1, Songs));
-        dispatch(ShowLyric(isShowLyric, Songs[0]?.lyric));
+        dispatch(ShowLyric({ isShow: isShowLyric, lyric: Songs[0]?.lyric }));
     }
 
     useEffect(() => {

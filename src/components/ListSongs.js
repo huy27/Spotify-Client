@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Add_Favorite, Add_Favorites, Remove_Favorite } from "../action/FavoriteAction";
-import { ShowLyric } from "../action/LyricAction";
+import { addListFavoriteSong, addFavoriteSong, removeFavorite } from "../reducer/FavoriteSlice";
+import { ShowLyric } from "../reducer/LyricSlice";
 import { Set_Song } from "../action/SongAction";
 
 const ListSongs = ({ height }) => {
@@ -19,7 +19,7 @@ const ListSongs = ({ height }) => {
 
   useEffect(() => {
     if (localStorage.getItem("Favorite")) {
-      dispatch(Add_Favorites(JSON.parse(localStorage.getItem("Favorite"))));
+      dispatch(addListFavoriteSong(JSON.parse(localStorage.getItem("Favorite"))));
     }
   }, [])
 
@@ -28,18 +28,18 @@ const ListSongs = ({ height }) => {
   const handlePlaySong = (idSong) => {
     setidSong(idSong);
     dispatch(Set_Song(idSong, DataSongs));
-    dispatch(ShowLyric(lyric.isShow, DataSongs.find(s => s.id === idSong)?.lyric));
+    dispatch(ShowLyric({ isShow: lyric.isShow, lyric: DataSongs.find(s => s.id === idSong)?.lyric }));
   };
 
   const handleAddFavorite = (song) => {
     if (!favorite.find(f => f.id === song.id)) {
-      dispatch(Add_Favorite(song));
+      dispatch(addFavoriteSong(song));
     }
     else {
       if (favorite.length === 1) {
         localStorage.removeItem("Favorite");
       }
-      dispatch(Remove_Favorite(song.id));
+      dispatch(removeFavorite(song.id));
     }
   }
 

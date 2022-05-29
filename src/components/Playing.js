@@ -3,9 +3,9 @@ import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { Set_Song } from "../action/SongAction";
-import { Set_Volume } from "../action/VolumeAction";
+import { SetVolume } from "../reducer/AudioSlice";
 import ReactTooltip from 'react-tooltip';
-import { ShowLyric } from "../action/LyricAction";
+import { ShowLyric } from "../reducer/LyricSlice";
 
 export default function Playing() {
   const player = useRef();
@@ -19,12 +19,12 @@ export default function Playing() {
 
   useEffect(() => {
     player.current.audio.current.addEventListener('volumechange', (e) => {
-      dispatch(Set_Volume(`${((e.target).volume * 100).toFixed(0)}`));
+      dispatch(SetVolume(`${((e.target).volume * 100).toFixed(0)}`));
     })
 
     return (
       player.current.audio.current.removeEventListener('volumechange', (e) => {
-        dispatch(Set_Volume(`${((e.target).volume * 100).toFixed(0)}`));
+        dispatch(SetVolume(`${((e.target).volume * 100).toFixed(0)}`));
       })
     )
   }, [])
@@ -40,7 +40,7 @@ export default function Playing() {
   }
 
   const handleShowLyric = (isShow, lyric) => {
-    dispatch(ShowLyric(isShow, lyric));
+    dispatch(ShowLyric({ isShow, lyric }));
   }
 
   return (

@@ -1,11 +1,9 @@
 import { combineReducers } from "redux"
 import SongSReducer from './SongsReducer';
 import SongReducer from './SongReducer';
-import FavoritesReducer from './FavoriteReducer';
-import AudioReducer from './AudioReducer';
-import LyricReducer from './LyricReducer';
-
-
+import FavoritesReducer from './FavoriteSlice';
+import AudioReducer from './AudioSlice';
+import LyricReducer from './LyricSlice';
 
 const RootReducer = combineReducers({
     Songs: SongSReducer,
