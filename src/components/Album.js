@@ -1,16 +1,16 @@
 
-import Navbar from './Navbar';
-import ListSongs from './ListSongs';
-import Playing from './Playing';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSongsApi } from './../api/SongApi';
-import { Set_Songs } from '../action/SongsAction';
-import { Set_Song } from '../action/SongAction';
 import { useEffect } from 'react';
-import DataSongs from "./../data/songs.json";
+import { useDispatch, useSelector } from 'react-redux';
+// import DataSongs from "./../data/songs.json";
 import { useLocation, useParams } from 'react-router-dom';
-import Lyric from './Lyric';
+import { Set_Song } from '../action/SongAction';
+import { Set_Songs } from '../action/SongsAction';
 import { ShowLyric } from '../reducer/LyricSlice';
+import { getSongsByAlbumIdApi } from './../api/SongApi';
+import ListSongs from './ListSongs';
+import Lyric from './Lyric';
+import Navbar from './Navbar';
+import Playing from './Playing';
 
 const Album = () => {
     const dispatch = useDispatch();
@@ -20,9 +20,7 @@ const Album = () => {
     const isShowLyric = useSelector(state => state.Lyric.isShow);
 
     const getSongs = async () => {
-        const result = await getSongsApi();
         let Songs = [];
-
         if (id === "favorite") {
             Songs = JSON.parse(localStorage.getItem("Favorite"));
         }
@@ -30,11 +28,14 @@ const Album = () => {
             Songs = [...searchSongs];
         }
         else {
-            Songs = DataSongs.filter(o => o.albumId === id);
+            Songs = await getSongsByAlbumIdApi(id);
+            
         }
-        dispatch(Set_Songs(Songs));
-        dispatch(Set_Song(-1, Songs));
-        dispatch(ShowLyric({ isShow: isShowLyric, lyric: Songs[0]?.lyric }));
+        if(Songs){
+            dispatch(Set_Songs(Songs));
+            dispatch(Set_Song(-1, Songs));
+            dispatch(ShowLyric({ isShow: isShowLyric, lyric: Songs[0]?.lyric }));
+        }
     }
 
     useEffect(() => {

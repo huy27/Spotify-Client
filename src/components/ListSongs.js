@@ -72,7 +72,7 @@ const ListSongs = ({ height }) => {
               <td>{song.name}</td>
               <td className="text-left">{song.author}</td>
               <td className="text-center">
-                {idSong === song.id && <img className="disk-active" src={song.links.images[0].url} alt='avatar' />}
+                {idSong === song.id && <img className="disk-active" src={song.image} alt='avatar' />}
               </td>
             </tr>
           ))}

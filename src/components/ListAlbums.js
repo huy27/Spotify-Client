@@ -1,13 +1,31 @@
 import { Autocomplete, Button, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
-import Albums from './../data/albums.json';
-import DataSongs from './../data/songs.json';
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+// import Albums from './../data/albums.json';
+// import DataSongs from './../data/songs.json';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { getAlbumsApi } from '../api/AlbumApi';
+import { getSongsApi } from '../api/SongApi';
 
 const ListAlbums = () => {
     let navigate = useNavigate();
     const [searchSongs, setSearchSongs] = useState([]);
+    const [Albums, setAlbums] = useState([]);
+    const [DataSongs, setDataSongs] = useState([]);
+
+    const getAlbums = async () => {
+        const albums = await getAlbumsApi();
+        setAlbums(albums);
+    }
+
+    const getSongs = async () => {
+        const songs = await getSongsApi();
+        setDataSongs(songs);
+    }
+
+    useEffect(() => {
+        getAlbums();
+        getSongs();
+    }, [])
 
     const handSearchSongs = (songs) => {
         setSearchSongs(songs);  
@@ -60,11 +78,11 @@ const ListAlbums = () => {
                 {Albums.map(album => (
                     <li key={album.id}>
                         <Link to={`/album/${album.id}`} className="card" state={{ albumName: `${album.name}` }}>
-                            <img src={`${album.background_image_url}`} className="card__image" alt="" />
+                            <img src={`${album.backgroundImageUrl}`} className="card__image" alt="" />
                             <div className="card__overlay">
                                 <div className="card__header">
                                     <svg className="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>
-                                    <img className="card__thumb" src={`${album.background_image_url}`} alt="" />
+                                    <img className="card__thumb" src={`${album.backgroundImageUrl}`} alt="" />
                                     <div className="card__header-text">
                                         <h3 className="card__title"><strong>{album.name}</strong></h3>
                                         <span className="card__status">{album.created_at}</span>
