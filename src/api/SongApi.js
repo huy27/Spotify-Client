@@ -10,3 +10,8 @@ export const getSongsByAlbumIdApi = async (id) => {
     const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/Music/${id}`);
     return result.data;
 }
+
+export const getSongsByName = async (name) => {
+    const result = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/Music/SearchByName?name=${name}`);
+    return result.data;
+}

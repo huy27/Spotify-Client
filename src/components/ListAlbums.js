@@ -4,7 +4,7 @@ import { Autocomplete, Button, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAlbumsApi } from '../api/AlbumApi';
-import { getSongsApi } from '../api/SongApi';
+import { getSongsByName } from './../api/SongApi';
 
 const ListAlbums = () => {
     let navigate = useNavigate();
@@ -17,27 +17,30 @@ const ListAlbums = () => {
         setAlbums(albums);
     }
 
-    const getSongs = async () => {
-        const songs = await getSongsApi();
-        setDataSongs(songs);
-    }
-
     useEffect(() => {
         getAlbums();
-        getSongs();
     }, [])
 
     const handSearchSongs = (songs) => {
-        setSearchSongs(songs);  
+        setSearchSongs(songs);
+    }
+
+    const findSongByName = async (name) => {
+        const songs = await getSongsByName(name);
+        const data = songs.filter((el) => {
+            return !searchSongs.find(({ id }) => el.id === id)
+        })
+        setDataSongs(data);
     }
 
     const SearchSongs = () => {
-        navigate("/search", { state: { searchSongs: searchSongs }});
+        navigate("/search", { state: { searchSongs: searchSongs } });
     }
     return (
         <div className="container-card">
             <div className="bg-search">
                 <Autocomplete
+                    freeSolo
                     multiple
                     variant="outlined"
                     limitTags={0}
@@ -45,6 +48,7 @@ const ListAlbums = () => {
                     options={DataSongs}
                     getOptionLabel={(option) => option.name}
                     sx={{ width: "80%" }}
+                    onInputChange={(event, value) => findSongByName(event.target.value)}
                     onChange={(event, value) => handSearchSongs(value)}
                     className="container-search"
                     renderInput={(params) => (
@@ -56,9 +60,9 @@ const ListAlbums = () => {
                             />
                         </>)
                     }
-                    renderOption={(props, option) => (
-                        <li {...props}>{option.name}</li>
-                    )}
+                    renderOption={(props, option) => {
+                        return <li {...props}>{option.name}</li>
+                    }}
                     ListboxProps={
                         {
                             style: {
