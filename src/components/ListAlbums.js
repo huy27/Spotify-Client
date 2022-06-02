@@ -61,7 +61,15 @@ const ListAlbums = () => {
                         </>)
                     }
                     renderOption={(props, option) => {
-                        return <li {...props}>{option.name}</li>
+                        return (
+                            <>
+                                <li {...props} style={{ display: 'flex' }}>
+                                    <div style={{ width: '90%' }}>{option.name} - {option.author}</div>
+                                    <div><img style={{ width: '40px', height: '40px' }} src={option.image} alt={option.name} /></div>
+                                </li>
+                                <hr />
+                            </>
+                        )
                     }}
                     ListboxProps={
                         {
