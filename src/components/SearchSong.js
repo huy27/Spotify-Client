@@ -46,7 +46,7 @@ const SearchSongs = () => {
                         <TextField
                             {...params}
                             size="small"
-                            placeholder="Nhập tên bài hát"
+                            placeholder="Nhập tên bài hát hoặc ca sĩ"
                         />
                     </>)
                 }
