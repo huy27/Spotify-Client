@@ -1,16 +1,12 @@
-import { Autocomplete, Button, TextField } from '@mui/material';
 // import Albums from './../data/albums.json';
 // import DataSongs from './../data/songs.json';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getAlbumsApi } from '../api/AlbumApi';
-import { getSongsByName } from './../api/SongApi';
+import SearchSongs from './SearchSong';
 
 const ListAlbums = () => {
-    let navigate = useNavigate();
-    const [searchSongs, setSearchSongs] = useState([]);
     const [Albums, setAlbums] = useState([]);
-    const [DataSongs, setDataSongs] = useState([]);
 
     const getAlbums = async () => {
         const albums = await getAlbumsApi();
@@ -21,70 +17,10 @@ const ListAlbums = () => {
         getAlbums();
     }, [])
 
-    const handSearchSongs = (songs) => {
-        setSearchSongs(songs);
-    }
-
-    const findSongByName = async (name) => {
-        const songs = await getSongsByName(name);
-        const data = songs.filter((el) => {
-            return !searchSongs.find(({ id }) => el.id === id)
-        })
-        setDataSongs(data);
-    }
-
-    const SearchSongs = () => {
-        navigate("/search", { state: { searchSongs: searchSongs } });
-    }
     return (
         <div className="container-card">
             <div className="bg-search">
-                <Autocomplete
-                    freeSolo
-                    multiple
-                    variant="outlined"
-                    limitTags={0}
-                    id="multiple-limit-tags"
-                    options={DataSongs}
-                    getOptionLabel={(option) => option.name}
-                    sx={{ width: "80%" }}
-                    onInputChange={(event, value) => findSongByName(event.target.value)}
-                    onChange={(event, value) => handSearchSongs(value)}
-                    className="container-search"
-                    renderInput={(params) => (
-                        <>
-                            <TextField
-                                {...params}
-                                size="small"
-                                placeholder="Nhập tên bài hát"
-                            />
-                        </>)
-                    }
-                    renderOption={(props, option) => {
-                        return (
-                            <>
-                                <li {...props} style={{ display: 'flex' }}>
-                                    <div style={{ width: '90%' }}>{option.name} - {option.author}</div>
-                                    <div><img style={{ width: '40px', height: '40px' }} src={option.image} alt={option.name} /></div>
-                                </li>
-                                <hr />
-                            </>
-                        )
-                    }}
-                    ListboxProps={
-                        {
-                            style: {
-                                maxHeight: '150px',
-                                border: '1px solid white',
-                            }
-                        }
-                    }
-                />
-                <div style={{ backgroundColor: '#e7e7e7' }}>
-                    <Button disabled={searchSongs.length === 0} color="primary" onClick={SearchSongs}>
-                        Tìm
-                    </Button>
-                </div>
+                <SearchSongs />
             </div>
             <ul className="cards">
                 {Albums.map(album => (
