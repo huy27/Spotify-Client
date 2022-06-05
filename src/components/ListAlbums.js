@@ -33,7 +33,7 @@ const ListAlbums = () => {
                                     <img className="card__thumb" src={`${album.backgroundImageUrl}`} alt="" />
                                     <div className="card__header-text">
                                         <h3 className="card__title"><strong>{album.name}</strong></h3>
-                                        <span className="card__status">{album.created_at}</span>
+                                        <span className="card__status">{album.createdAt}</span>
                                     </div>
                                 </div>
                                 <p className="card__description">{album.description}</p>
