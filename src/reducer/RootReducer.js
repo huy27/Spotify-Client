@@ -1,6 +1,6 @@
 import { combineReducers } from "redux"
-import SongSReducer from './SongsReducer';
-import SongReducer from './SongReducer';
+import SongSReducer from './SongsSlice';
+import SongReducer from './SongSlice';
 import FavoritesReducer from './FavoriteSlice';
 import AudioReducer from './AudioSlice';
 import LyricReducer from './LyricSlice';

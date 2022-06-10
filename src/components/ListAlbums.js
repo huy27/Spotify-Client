@@ -3,10 +3,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAlbumsApi } from '../api/AlbumApi';
+import { ClearSong } from '../reducer/SongSlice';
 import SearchSongs from './SearchSong';
+import { useDispatch } from 'react-redux';
 
 const ListAlbums = () => {
     const [Albums, setAlbums] = useState([]);
+    const dispatch = useDispatch();
 
     const getAlbums = async () => {
         const albums = await getAlbumsApi();
@@ -15,6 +18,7 @@ const ListAlbums = () => {
 
     useEffect(() => {
         getAlbums();
+        dispatch(ClearSong());
     }, [])
 
     return (
