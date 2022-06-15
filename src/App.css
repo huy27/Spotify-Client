@@ -124,10 +124,6 @@
   opacity: 0.7;
 }
 
-.card__image:hover {
-  transform: scaleX(-1);
-}
-
 .card__overlay {
   position: absolute;
   bottom: 0;
