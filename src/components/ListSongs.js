@@ -59,7 +59,7 @@ const ListSongs = ({ height }) => {
   }, [song]);
 
   return (
-    <div className="col-span-3 overflow-auto" style={{ height: `${height}` }}>
+    <div className="col-span-3 overflow-auto" style={{ minHeight: `${height}` }}>
       <table className="table-auto w-full">
         <thead className="text-white h-12">
           <tr>
